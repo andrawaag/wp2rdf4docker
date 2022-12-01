@@ -1,16 +1,10 @@
-GPMLS := ${shell cat ls gpml | sed -e 's/\(.*\)/gpml\/\1.gpml/' }
 WPRDFS := ${shell cat ls gpml | sed -e 's/\(.*\)/wp\/\1.ttl/' }
 GPMLRDFS := ${shell cat ls gpml | sed -e 's/\(.*\)/wp\/gpml\/\1.ttl/' }
-REPORTS := ${shell cat ls gpml | sed -e 's/\(.*\)/reports\/\1.md/' }
-SBMLS := ${shell cat ls gpml | sed -e 's/\(.*\)/sbml\/\1.sbml/' } ${shell cat ls gpml | sed -e 's/\(.*\)/sbml\/\1.txt/' }
-SVGS := ${shell cat ls gpml | sed -e 's/\(.*\)/sbml\/\1.svg/' }
 
 FRAMEWORKVERSION=release-3
 JENAVERSION=4.3.0
 GPMLRDFJAR=GPML2RDF-3.0.0-SNAPSHOT.jar
 WPCURJAR=wikipathways.curator-1-SNAPSHOT.jar
-
-WEBSITE := ${shell cat website.txt }
 
 all: docker_wikipathways-rdf-wp.zip docker_wikipathways-rdf-gpml.zip
 
@@ -19,12 +13,6 @@ install:
 	@wget -O libs/${WPCURJAR} https://github.com/wikipathways/wikipathways-curation-template/releases/download/${FRAMEWORKVERSION}/${WPCURJAR}
 	@wget -O libs/slf4j-simple-1.7.32.jar https://search.maven.org/remotecontent?filepath=org/slf4j/slf4j-simple/1.7.32/slf4j-simple-1.7.32.jar
 	@wget -O libs/jena-arq-${JENAVERSION}.jar https://repo1.maven.org/maven2/org/apache/jena/jena-arq/${JENAVERSION}/jena-arq-${JENAVERSION}.jar
-
-sbml: ${SBMLS}
-
-svg: ${SVGS}
-
-fetch: clean ${GPMLS}
 
 clean:
 	@rm -f ${GPMLS}
