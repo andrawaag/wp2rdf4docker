@@ -1,5 +1,5 @@
-WPRDFS := ${shell cat ls gpml | sed -e 's/\(.*\)/wp\/\1.ttl/' }
-GPMLRDFS := ${shell cat ls gpml | sed -e 's/\(.*\)/wp\/gpml\/\1.ttl/' }
+WPRDFS := ${shell ls gpml | sed -e 's/\(.*\)/wp\/\1.ttl/' }
+GPMLRDFS := ${shell ls gpml | sed -e 's/\(.*\)/wp\/gpml\/\1.ttl/' }
 
 FRAMEWORKVERSION=release-4
 JENAVERSION=4.3.0
