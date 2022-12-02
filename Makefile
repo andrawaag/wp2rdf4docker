@@ -1,7 +1,7 @@
 WPRDFS := ${shell cat ls gpml | sed -e 's/\(.*\)/wp\/\1.ttl/' }
 GPMLRDFS := ${shell cat ls gpml | sed -e 's/\(.*\)/wp\/gpml\/\1.ttl/' }
 
-FRAMEWORKVERSION=release-3
+FRAMEWORKVERSION=release-4
 JENAVERSION=4.3.0
 GPMLRDFJAR=GPML2RDF-3.0.0-SNAPSHOT.jar
 WPCURJAR=wikipathways.curator-1-SNAPSHOT.jar
