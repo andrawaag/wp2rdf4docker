@@ -1,3 +1,4 @@
+shell ls gpml
 WPRDFS := ${shell ls gpml | sed -e 's/\(.*\)/wp\/\1.ttl/' }
 GPMLRDFS := ${shell ls gpml | sed -e 's/\(.*\)/wp\/gpml\/\1.ttl/' }
 
