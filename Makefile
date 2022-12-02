@@ -73,3 +73,4 @@ updateTests:
           | sed 's/\.class//' | xargs javap -public -cp libs/wikipathways.curator-1-SNAPSHOT.jar \                                                                                                                                    
           > tests.tmp                                                                                                                                                                                                                 
         @groovy extractTests.groovy > tests.tmp2 
+        @mv tests.tmp2 tests.txt
