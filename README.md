@@ -1,70 +1,23 @@
-# WikiPathways Curation Template
+# Docker
+This repo contains a Dockerfile to build a docker container for the RDF generation of Wikipathways (GPML) content.
 
-Template repository to set up pathway curation for the subset of WikiPathways, as
-specified in the `pathways.txt` file. Second, update the `website.txt` file 
-(create if needed) to contain the link where the reports (particularly the JSON)
-files are published.
-
-## Step 1. Requirements
-
-You need the following programs and experience with a `Makefile`:
-
-* curl
-* git
-* zip
-* java
-* javac
-* bash
-
-You also need four Java archives in the `libs/` folder that you can download
-(and update) with:
-
+## Run docker
 ```
-make install
+sudo docker container run -d -v /home/ubuntu/wikipathways_docker/gpml:/wp/wp2rdf4docker/gpml -v /home/ubuntu/wikipathways_docker/gpml/reports:/wp/wp2rdf4docker/reports -v /home/ubuntu/wikipathways_docker/gpml/wp:/wp/wp2rdf4docker/wp  -t micelio/wikipathways_rdf:latest
 ```
+The docker command will print a hash like the one below:
+`5bfa8c26ca80da265b06ce419edf5cd2d804e6898fffa2ebef1cda631eb3fee2`
 
-## Step 2: Update the GPML files
+Copy that hash and type
+`sudo docker exec -it <hash> bash`
 
-First, make sure the `pathways.txt` files is updated to list the pathways you want
-to curate.
+e.g. (per the example hash above)
+`sudo docker exec -t 5bfa8c26ca80da265b06ce419edf5cd2d804e6898fffa2ebef1cda631eb3fee2 bash
 
-Then, do:
+a command line will appear
+`bash-5.1# `
 
-```
-make fetch
-```
-
-## Step 3: Make sure to have the BridgeDb ID mapping databases
-
-Create a folder `/tmp/OPSBRIDGEDB` where you create a `config.properties` file.
-To download the BridgeDb identifier mapping files, download them from
-[here](https://bridgedb.github.io/data/gene_database/)
-and save them in the `/path/to/where/the/bridge/files/are` folder, mathching what
-you entered in the `config.properties` file above with the `bridgefiles=` parameter.
-You also want to download the identifier mapping database for coronavirus
-genes and proteins.
-
-## Step 4: Create the RDF (Turtle)
-
-```
-make
-```
-
-Make sure that the GPML and the `.rev` files are under version control to track
-the history of the pathway.
-
-## Step 5: Run the validation tests
-
-```
-make check
-```
-
-The `tests.txt` file contains the list of tests that are run. By default it runs
-all tests, identified with the `all` methods, from the generic tests and community-specific
-tests are commented out (by starting the line with an `#`). By commenting out the
-the `all` lines, you can uncomment specific tests in that class.
-
-## Step 6: (optional) Publish everything online
-
-For this, enable GitHub Pages and add the files in `reports/` to the revision
-control, including the `index.md` in the root folder.
+# Docker
+## Build the docker container
+## Run
+`sudo docker container run -d -v /home/ubuntu/wikipathways_docker/gpml:/gpml -v /home/ubuntu/wikipathways_docker/reports:/reports -v /home/ubuntu/wikipathways_docker/wp:/wp  sudo docker container run -d -v /home/ubuntu/wikipathways_docker/gpml:/gpml -v /home/ubuntu/wikipathways_docker/reports:/reports -v /home/ubuntu/wikipathways_docker/wp:/wp  -t micelio:wikipathwaysRDF`
